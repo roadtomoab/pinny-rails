@@ -1,4 +1,4 @@
 class Pin < ApplicationRecord
   belongs_to :user
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
 end
