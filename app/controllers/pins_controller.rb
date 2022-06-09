@@ -1,10 +1,16 @@
 class PinsController < ApplicationController
     before_action :authorize
-    skip_before_action :authorize, only: [:index]
+    skip_before_action :authorize, only: [:index, :show]
 
 
     def index
         render json: Pin.all
+    end
+
+    def my_pins
+        current_user = User.find_by(id: session[:user_id])
+        pins = current_user.pins
+        render json: pins
     end
 
     def show
